@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
@@ -12,8 +13,11 @@ class App extends React.Component {
     order: {}
   };
 
-  componentDidMount() {
+  static propTypes = {
+    match: PropTypes.object
+  }
 
+  componentDidMount() {
     // this ref is different, it's a reference to the data in firebase
     const { params } = this.props.match;
     //first reinstate our localStorage
@@ -115,6 +119,7 @@ class App extends React.Component {
           deleteFish={this.deleteFish}
           loadSampleFishes={this.loadSampleFishes}
           fishes={this.state.fishes}
+          storeId={this.props.match.params.storeId}
         />
       </div>
     )
